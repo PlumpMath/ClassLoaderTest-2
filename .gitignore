@@ -1,3 +1,7 @@
 .data/*
 .adf/*
 .DS_Store/*
+
+*.jar
+
+*.ear
