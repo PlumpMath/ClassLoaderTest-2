@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<weblogic-application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-application http://xmlns.oracle.com/weblogic/weblogic-application/1.3/weblogic-application.xsd"
+                      xmlns="http://xmlns.oracle.com/weblogic/weblogic-application">
+ 
+
+
+    <library-ref>
+        <library-name>file1</library-name>
+        <exact-match>true</exact-match>
+    </library-ref>
+
+    <prefer-application-packages>
+        <package-name>commonj.work.*</package-name>
+    </prefer-application-packages>
+    
+<!--
+
+    
+    <library-ref>
+        <library-name>file1</library-name>
+        <exact-match>true</exact-match>
+    </library-ref>
+    
+    <prefer-application-packages>
+        <package-name>commonj.work.*</package-name>
+    </prefer-application-packages>
+    
+    
+
+
+
+-->
+
+<!--
+    resource file1.txt taken from app
+    resource commonj.work.Work.class taken from app
+    class commonj.work.Work taken from system class loader
+    <prefer-application-resources>
+        <resource-name>commonj.work.*</resource-name>
+        <resource-name>file1.txt</resource-name>
+    </prefer-application-resources>
+-->
+    
+<!--
+    Resource is picked from Library
+    
+    <library-ref>
+        <library-name>file1</library-name>
+        <exact-match>true</exact-match>
+    </library-ref>
+
+
+    <prefer-application-packages>
+        <package-name>any.*</package-name>
+        <package-name>yna.*</package-name>
+    </prefer-application-packages>
+    
+-->
+
+<!--
+    With just library-ref resources is taken from system classloader
+
+    <library-ref>
+        <library-name>file1</library-name>
+        <exact-match>true</exact-match>
+    </library-ref>
+
+-->
+<!--
+    CHANGED ORDER OF RESOURCE LOAD
+    zip:/home/oracle/Oracle/Middleware/user_projects/domains/SOA_domain/servers/AdminServer/tmp/_WL_user/classloadertest1/5v2agu/war/WEB-INF/lib/_wl_cls_gen.jar!/file1.txt
+    
+    <prefer-application-packages>
+        <package-name>any.*</package-name>
+    </prefer-application-packages>
+-->
+    <!--
+    DOES NOT WORK. WLS PICKED UP:
+    jar:file:/home/oracle/Oracle/Middleware/user_projects/domains/SOA_domain/lib/file1.jar!/file1.txt
+
+    <prefer-application-resources>
+        <resource-name>/file1.txt</resource-name>
+    </prefer-application-resources>
+-->
+    <!-- DEPLOYMENT DOES NOT WORK DUE TO:
+    java.io.FileNotFoundException: class path resource [com/oracle/pitchfork/config/deployment/deployment.xml] cannot be opened because it does not exist
+
+    <prefer-application-resources>
+        <resource-name>*</resource-name>
+    </prefer-application-resources>
+-->
+    <!-- DEPLOYMENT DOES NOT WORK DUE TO:
+    java.io.FileNotFoundException: class path resource [com/oracle/pitchfork/config/deployment/deployment.xml] cannot be opened because it does not exist
+
+    <prefer-application-packages>
+        <package-name>any.*</package-name>
+    </prefer-application-packages>
+    
+    <prefer-application-resources>
+        <resource-name>*</resource-name>
+    </prefer-application-resources>
+-->
+    <!--
+    CHANGED ORDER OF RESOURCE LOAD
+    zip:/home/oracle/Oracle/Middleware/user_projects/domains/SOA_domain/servers/AdminServer/tmp/_WL_user/classloadertest1/5v2agu/war/WEB-INF/lib/_wl_cls_gen.jar!/file1.txt
+
+    <prefer-application-packages>
+        <package-name>any.*</package-name>
+    </prefer-application-packages>
+    
+    <prefer-application-resources>
+        <resource-name>/file1.txt</resource-name>
+    </prefer-application-resources>
+-->
+
+<!--
+   Library file is pickedup
+   <library-ref>
+        <library-name>file1</library-name>
+        <exact-match>true</exact-match>
+    </library-ref>
+    
+    <prefer-application-packages>
+        <package-name>any.*</package-name>
+        <package-name>yna.*</package-name>
+    </prefer-application-packages>
+-->
+
+</weblogic-application>
+
